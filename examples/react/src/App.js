@@ -92,11 +92,11 @@ class App extends Component {
 				<TodoItem
 					key={todo.id}
 					todo={todo}
-					onToggle={() => this.toggle(todo)}
-					onDestroy={() => this.destroy(todo)}
-					onEdit={() => this.edit(todo)}
+					onToggle={(...args) => this.toggle(todo, ...args)}
+					onDestroy={(...args) => this.destroy(todo, ...args)}
+					onEdit={(...args) => this.edit(todo, ...args)}
 					editing={this.state.editing === todo.id}
-					onSave={() => this.save(todo)}
+					onSave={(...args) => this.save(todo, ...args)}
 					onCancel={this.cancel}
 				/>
 			);
