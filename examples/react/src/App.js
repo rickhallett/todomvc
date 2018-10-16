@@ -21,9 +21,11 @@ class App extends Component {
 		this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
+
 	handleChange(event) {
 		this.setState({ newTodo: event.target.value });
 	}
+
 	handleNewTodoKeyDown(event) {
 		if (event.keyCode !== ENTER_KEY) {
 			return;
@@ -38,29 +40,37 @@ class App extends Component {
 			this.setState({ newTodo: '' });
 		}
 	}
+
 	toggleAll(event) {
 		const checked = event.target.checked;
 		this.props.model.toggleAll(checked);
 	}
+
 	toggle(todoToToggle) {
 		this.props.model.toggle(todoToToggle);
 	}
+
 	destroy(todo) {
 		this.props.model.destroy(todo);
 	}
+
 	edit(todo) {
 		this.setState({ editing: todo.id });
 	}
+
 	save(todoToSave, text) {
 		this.props.model.save(todoToSave, text);
 		this.setState({ editing: null });
 	}
+
 	cancel() {
 		this.setState({ editing: null });
 	}
+
 	clearCompleted() {
 		this.props.model.clearCompleted();
 	}
+
 	render() {
 		let footer;
 		let main;
