@@ -10,6 +10,16 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { nowShowing: ALL_TODOS, editing: null, newTodo: '' };
+
+		this.toggle = this.toggle.bind(this);
+		this.destroy = this.destroy.bind(this);
+		this.edit = this.edit.bind(this);
+		this.save = this.save.bind(this);
+		this.cancel = this.cancel.bind(this);
+		this.clearCompleted = this.clearCompleted.bind(this);
+		this.toggleAll = this.toggleAll.bind(this);
+		this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
+		this.handleChange = this.handleChange.bind(this);	
 	}
 	handleChange(event) {
 		this.setState({ newTodo: event.target.value });
@@ -72,12 +82,12 @@ class App extends Component {
 				<TodoItem
 					key={todo.id}
 					todo={todo}
-					onToggle={this.toggle.bind(this, todo)}
-					onDestroy={this.destroy.bind(this, todo)}
-					onEdit={this.edit.bind(this, todo)}
+					onToggle={() => this.toggle(todo)}
+					onDestroy={() => this.destroy(todo)}
+					onEdit={() => this.edit(todo)}		  
 					editing={this.state.editing === todo.id}
-					onSave={this.save.bind(this, todo)}
-					onCancel={this.cancel.bind(this)}
+					onSave={() => this.save(todo)}
+					onCancel={this.cancel}
 				/>
 			);
 		}, this);
@@ -94,7 +104,7 @@ class App extends Component {
 					count={activeTodoCount}
 					completedCount={completedCount}
 					nowShowing={this.state.nowShowing}
-					onClearCompleted={this.clearCompleted.bind(this)}
+					onClearCompleted={this.clearCompleted}
 				/>
 			);
 		}
@@ -105,7 +115,7 @@ class App extends Component {
 					<input
 						className="toggle-all"
 						type="checkbox"
-						onChange={this.toggleAll.bind(this)}
+						onChange={this.toggleAll}
 						checked={activeTodoCount === 0}
 					/>
 					<ul className="todo-list">{todoItems}</ul>
@@ -121,8 +131,8 @@ class App extends Component {
 						className="new-todo"
 						placeholder="What needs to be done?"
 						value={this.state.newTodo}
-						onKeyDown={this.handleNewTodoKeyDown.bind(this)}
-						onChange={this.handleChange.bind(this)}
+						onKeyDown={this.handleNewTodoKeyDown}
+						onChange={this.handleChange}
 						autoFocus={true}
 					/>
 				</header>
