@@ -19,7 +19,7 @@ class App extends Component {
 		this.clearCompleted = this.clearCompleted.bind(this);
 		this.toggleAll = this.toggleAll.bind(this);
 		this.handleNewTodoKeyDown = this.handleNewTodoKeyDown.bind(this);
-		this.handleChange = this.handleChange.bind(this);	
+		this.handleChange = this.handleChange.bind(this);
 	}
 	handleChange(event) {
 		this.setState({ newTodo: event.target.value });
@@ -84,7 +84,7 @@ class App extends Component {
 					todo={todo}
 					onToggle={() => this.toggle(todo)}
 					onDestroy={() => this.destroy(todo)}
-					onEdit={() => this.edit(todo)}		  
+					onEdit={() => this.edit(todo)}
 					editing={this.state.editing === todo.id}
 					onSave={() => this.save(todo)}
 					onCancel={this.cancel}
@@ -142,7 +142,5 @@ class App extends Component {
 		);
 	}
 }
-
-
 
 export default App;
