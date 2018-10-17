@@ -11,13 +11,16 @@ class TodoModel {
 		this.todos = Utils.store(key);
 		this.onChanges = [];
 	}
+
 	subscribe(onChange) {
 		this.onChanges.push(onChange);
 	}
+
 	inform() {
 		Utils.store(this.key, this.todos);
 		this.onChanges.forEach((cb) => cb());
 	}
+
 	addTodo(title) {
 		this.todos = this.todos.concat({
 			id: Utils.uuid(),
@@ -27,6 +30,7 @@ class TodoModel {
 
 		this.inform();
 	}
+
 	toggleAll(checked) {
 		// Note: it's usually better to use immutable data structures since they're
 		// easier to reason about and React works very well with them. That's why
@@ -38,6 +42,7 @@ class TodoModel {
 
 		this.inform();
 	}
+
 	toggle(todoToToggle) {
 		this.todos = this.todos.map(
 			(todo) =>
@@ -48,11 +53,13 @@ class TodoModel {
 
 		this.inform();
 	}
+
 	destroy(todo) {
 		this.todos = this.todos.filter((candidate) => candidate !== todo);
 
 		this.inform();
 	}
+
 	save(todoToSave, text) {
 		this.todos = this.todos.map(
 			(todo) =>
@@ -61,6 +68,7 @@ class TodoModel {
 
 		this.inform();
 	}
+
 	clearCompleted() {
 		this.todos = this.todos.filter((todo) => !todo.completed);
 

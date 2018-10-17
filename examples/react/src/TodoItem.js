@@ -15,6 +15,7 @@ class TodoItem extends Component {
 		this.handleKeyDown = this.handleKeyDown.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
+
 	handleSubmit(event) {
 		const val = this.state.editText.trim();
 		if (val) {
