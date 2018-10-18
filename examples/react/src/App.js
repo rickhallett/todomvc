@@ -93,11 +93,11 @@ class App extends Component {
 				<TodoItem
 					key={todo.id}
 					todo={todo}
-					onToggle={() => this.toggle(todo)}
-					onDestroy={() => this.destroy(todo)}
-					onEdit={() => this.edit(todo)}
+					onToggle={(...args) => this.toggle(todo, ...args)}
+					onDestroy={(...args) => this.destroy(todo, ...args)}
+					onEdit={(...args) => this.edit(todo, ...args)}
 					editing={this.state.editing === todo.id}
-					onSave={this.save.bind(this, todo)}
+					onSave={(...args) => this.save(todo, ...args)}
 					onCancel={() => this.cancel()}
 				/>
 			);
@@ -128,7 +128,7 @@ class App extends Component {
 					<input
 						className="toggle-all"
 						type="checkbox"
-						onChange={this.toggleAll.bind(this)}
+						onChange={(event) => this.toggleAll(event)}
 						checked={activeTodoCount === 0}
 					/>
 					<ul className="todo-list">{todoItems}</ul>
@@ -144,8 +144,8 @@ class App extends Component {
 						className="new-todo"
 						placeholder="What needs to be done?"
 						value={this.state.newTodo}
-						onKeyDown={this.handleNewTodoKeyDown.bind(this)}
-						onChange={this.handleChange.bind(this)}
+						onKeyDown={(event) => this.handleNewTodoKeyDown(event)}
+						onChange={(event) => this.handleChange(event)}
 						autoFocus={true}
 					/>
 				</header>
