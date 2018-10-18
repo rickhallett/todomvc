@@ -9,9 +9,9 @@ class TodoItem extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { editText: this.props.todo.title };
-		this.handleKeyDown = this.handleKeyDown.bind(this);
 	}
-	handleSubmit(event) {
+
+	handleSubmit() {
 		const val = this.state.editText.trim();
 		if (val) {
 			this.props.onSave(val);
@@ -31,7 +31,7 @@ class TodoItem extends Component {
 			this.setState({ editText: this.props.todo.title });
 			this.props.onCancel(event);
 		} else if (event.which === ENTER_KEY) {
-			this.handleSubmit(event);
+			this.handleSubmit();
 		}
 	}
 
@@ -82,12 +82,12 @@ class TodoItem extends Component {
 						className="toggle"
 						type="checkbox"
 						checked={this.props.todo.completed}
-						onChange={(event)=> this.props.onToggle(event)}
+						onChange={(event) => this.props.onToggle(event)}
 					/>
 					<label onDoubleClick={() => this.handleEdit()}>
 						{this.props.todo.title}
 					</label>
-					<button className="destroy" onClick={this.props.onDestroy} />
+					<button className="destroy" onClick={() => this.props.onDestroy()} />
 				</div>
 				<input
 					ref="editField"

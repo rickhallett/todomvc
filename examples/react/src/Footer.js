@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import Utils, { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from "./utils";
-import classNames from "classnames";
+import Utils, { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from './utils';
+import classNames from 'classnames';
 
 class TodoFooter extends Component {
-	render () {
-		const activeTodoWord = Utils.pluralize(this.props.count, "item");
+	render() {
+		const activeTodoWord = Utils.pluralize(this.props.count, 'item');
 		let clearButton = null;
 
 		if (this.props.completedCount > 0) {
 			clearButton = (
 				<button
 					className="clear-completed"
-					onClick={this.props.onClearCompleted}
-				>
+					onClick={this.props.onClearCompleted}>
 					Clear completed
 				</button>
 			);
@@ -28,26 +27,23 @@ class TodoFooter extends Component {
 					<li>
 						<a
 							href="#/"
-							className={classNames({ selected: nowShowing === ALL_TODOS })}
-						>
+							className={classNames({ selected: nowShowing === ALL_TODOS })}>
 							All
 						</a>
-					</li>{" "}
+					</li>{' '}
 					<li>
 						<a
 							href="#/active"
-							className={classNames({ selected: nowShowing === ACTIVE_TODOS })}
-						>
+							className={classNames({ selected: nowShowing === ACTIVE_TODOS })}>
 							Active
 						</a>
-					</li>{" "}
+					</li>{' '}
 					<li>
 						<a
 							href="#/completed"
 							className={classNames({
 								selected: nowShowing === COMPLETED_TODOS
-							})}
-						>
+							})}>
 							Completed
 						</a>
 					</li>
@@ -56,6 +52,6 @@ class TodoFooter extends Component {
 			</footer>
 		);
 	}
-};
+}
 
 export default TodoFooter;
