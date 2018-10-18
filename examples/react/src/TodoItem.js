@@ -82,7 +82,7 @@ class TodoItem extends Component {
 						className="toggle"
 						type="checkbox"
 						checked={this.props.todo.completed}
-						onChange={(event) => this.props.onToggle(event)}
+						onChange={() => this.props.onToggle()}
 					/>
 					<label onDoubleClick={() => this.handleEdit()}>
 						{this.props.todo.title}
